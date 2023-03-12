@@ -66,25 +66,24 @@ var levelThree = [{
 }]
 
 // welcome message
-console.log("--------- BRAIN RIDDLES 2.0 ---------");
+console.log(chalk.bold.yellow("--------- BRAIN RIDDLES 2.0 ---------"));
 console.log("\n");
 var userName = readlineSync.question("What's your name? \n");
 console.log("Hey " + userName + "! Welcome to Brain Riddles 2.0.");
 console.log("\n");
-console.log("--------- GUIDELINES FOR QUIZ ---------");
+console.log(chalk.bold.yellow("--------- GUIDELINES FOR QUIZ ---------"));
 console.log("\n");
 console.log("There are three levels in this quiz. Each level has 5 riddles.");
 console.log("Type your answer and then press Enter key.");
 console.log("Make sure to enter the correct spellings for your answer.");
 console.log("You can play next level only if you scored more than a predefined number in your current level.")
 console.log("\n");
-console.log("--------- Let's start! ---------");
+console.log(chalk.bold.yellow("--------- Let's start! ---------"));
 console.log("\n");
 
 // defining function play
 function play(question, answer) {
-  var userAnswer = readlineSync.question(chalk.red.bgWhite(question));
-  console.log("\n");
+  var userAnswer = readlineSync.question(chalk.red.bgWhite(question + "\n"));
 
   if (userAnswer.toUpperCase() === answer.toUpperCase()) {
     console.log(chalk.green("Right!"));
