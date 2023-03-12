@@ -1,12 +1,10 @@
+// Neogcamp mark-two exercise : Brain-riddles-2.0 quiz
+
 var readlineSync = require('readline-sync');
 var chalk = require('chalk');
 var score = 0;
 
-var userName = readlineSync.question("What's your name? \n");
-console.log("Hey " + userName + "! Welcome to brain riddles.");
-console.log("Lets start!");
-console.log("---------");
-
+// array of high score objects
 var highScores = [{
   name: "Nitasha",
   score: 15
@@ -15,18 +13,7 @@ var highScores = [{
   score: 10
 }]
 
-function play(question, answer) {
-  var userAnswer = readlineSync.question(chalk.red.bgWhite(question));
-
-  if (userAnswer.toUpperCase() === answer.toUpperCase()) {
-    console.log(chalk.green("Right!"));
-    score = score + 1;
-  } else {
-    console.log(chalk.red("Wrong!"));
-  }
-  console.log("Your Score:" + score);
-}
-
+// array of all questions objects
 var levelOne = [{
   question: "1.You go at red, but stop at green. What am I? ",
   answer: "Watermelon"
@@ -78,46 +65,86 @@ var levelThree = [{
   answer: "Money"
 }]
 
+// welcome message
+console.log("--------- BRAIN RIDDLES 2.0 ---------");
+console.log("\n");
+var userName = readlineSync.question("What's your name? \n");
+console.log("Hey " + userName + "! Welcome to Brain Riddles 2.0.");
+console.log("\n");
+console.log("--------- GUIDELINES FOR QUIZ ---------");
+console.log("\n");
+console.log("There are three levels in this quiz. Each level has 5 riddles.");
+console.log("Type your answer and then press Enter key.");
+console.log("Make sure to enter the correct spellings for your answer.");
+console.log("You can play next level only if you scored more than a predefined number in your current level.")
+console.log("\n");
+console.log("--------- Let's start! ---------");
+console.log("\n");
+
+// defining function play
+function play(question, answer) {
+  var userAnswer = readlineSync.question(chalk.red.bgWhite(question));
+  console.log("\n");
+
+  if (userAnswer.toUpperCase() === answer.toUpperCase()) {
+    console.log(chalk.green("Right!"));
+    score = score + 1;
+  } else {
+    console.log(chalk.red("Wrong!"));
+  }
+  console.log("Your Score:" + score);
+}
+
 // level one
 console.log(chalk.bold.black.bgRed("Level One"));
 console.log("---------");
+console.log("\n");
 
 for (var i=0; i<levelOne.length; i++) {
   play(levelOne[i].question, levelOne[i].answer);
   console.log(chalk.yellow("Right answer:" + levelOne[i].answer));
   console.log("---------");
+  console.log("\n");
 }
 
 // level two
 if (score >= 3) {
   console.log(chalk.bold.black.bgRed("Level Two"));
-console.log("---------");
+  console.log("---------");
+  console.log("\n");
 
-for (var i=0; i<levelTwo.length; i++) {
+  for (var i=0; i<levelTwo.length; i++) {
   play(levelTwo[i].question, levelTwo[i].answer);
   console.log(chalk.yellow("Right answer:" + levelTwo[i].answer));
   console.log("---------");
+  console.log("\n");
+  }
 }
-} else {
+else {
 }
 
 // level three
 if (score >= 7) {
   console.log(chalk.bold.black.bgRed("Level Three"));
-console.log("---------");
+  console.log("---------");
+  console.log("\n");
 
 for (var i=0; i<levelThree.length; i++) {
   play(levelThree[i].question, levelThree[i].answer);
   console.log(chalk.yellow("Right answer:" + levelThree[i].answer));
   console.log("---------");
+  console.log("\n");
+  }
 }
-} else {
+else {
 }
 
+// total score
 console.log("Yay! Your total score is " + score);
 console.log("Send me the screenshot of your scores.")
 console.log("---------");
 
+// high score
 if (score>=highScores[0].score) {
   console.log("Congratulations! You made a new high score");
 } else {
@@ -125,7 +152,8 @@ if (score>=highScores[0].score) {
 }
 
 console.log("---------");
-console.log("High scores:");
+console.log(chalk.bold.black.bgYellow("High scores:"));
+console.log("\n");
 
 for (var i=0; i<highScores.length; i++) {
   console.log(highScores[i].name + ":" + highScores[i].score);
